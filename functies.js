@@ -44,9 +44,12 @@ function pair(left, right) {
 }
 
 function left(pair) {
+    return pair((x,y) => x);
 }
 
 function right(pair) {
+    return pair((x,y) => y);
+
 }
 
 //* schrijf de functies left en right, zodat:
