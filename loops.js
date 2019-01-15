@@ -10,6 +10,15 @@ for (var i = 0; i <= grootste; i++){
     if(numbers[i]>grootste){
         var grootste=numbers[i];
     }
+
+    let lijst = [-12,-3,-2-1];
+    function grootsteGetal(lijst){
+        let g = lijst[0]
+
+        for(i = 1; i <lijst.length; i++){
+            
+        }
+    }
 }
  console.log(grootste); */
 
@@ -39,3 +48,13 @@ gemiddelde = som / numbers.length;
 console.log(gemiddelde)*/
 
 // check of een string een palindroom is
+let mystring = "madam";
+
+let checkPalindrome = mystring.split('').reverse().join('');
+
+if(mystring === checkPalindrome){
+    console.log("is palindrome");
+}
+else{
+    console.log("is not a palindrome");
+}

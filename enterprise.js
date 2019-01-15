@@ -14,54 +14,46 @@ const assert = require('assert')
 //* Hoeveel bedraagt de totale loonkost iedere maand?
 function totalSalaries(employees) {
 let totalsum = 0;
-    for( var i = 0; i<employees.lenght; i = i++){
+    for( var i = 0; i<employees.length; i = i++){
         totalsum += employees.salary;
     }
-    console.log(totalsum)
-}
+return totalsum}
 
 assert.equal(totalSalaries(employees), 20652)
-
 
 //* Welke freelancer verdient het meest?
 function bestPaidFreelancer(employees) {
     let largestSalary = 0;
-if(employees.freelancer == true){
-    for( i = 0; i <largestSalary; i++){
-            if(employees.salary[i]>largestSalary){
-                largestSalary=employees.salary[i];
-            }
+    let returnName="";
+for(i = 0; i <employees.length; i++ ){
+    if(employees[i].freelancer == true && employees[i].salary>= largestSalary)
+    {
+        largestSalary=employees[i].salary;
+        returnName = employees[i].name;
     }
+    }
+    return returnName;
 }
-}
+
 
 assert.equal(bestPaidFreelancer(employees), 'Els')
 
 
 //* Wie verdient er allemaal meer als 3000?
 function earsMoreThan3k(employees) {
+return employees
+.filter(e =>e.salary > 3000)
+.map(e => e.name)
 
-    for( var i = 0; i<employees.salary; i = i++){
-        if(employees.salary[i]>= 3000){
-            return employees.name[i]
-        }
-    }
-}
 
 assert.deepEqual(earsMoreThan3k(employees), ['Sandra', 'Alexander', 'Els'])
 
 
 //* Hoeveel verdient een interne medewerker gemiddeld?
 function averageSalaryNonFreeLancer(employees) {
-    var som = 0;
-    var gemiddeld;
-    if(employees.freelancer == false){
-        for(i = 0 ; i <employees.lenght ; i ++){
-                som += employees.salary[i];
-        }
-        gemiddeld = som /employees.length
-    }
-    return gemiddeld
+    const interne = employees.filter(e => !e.freelancer);
+    const totalS = interne.reduce((x,y) => x + y, 0);
+    return totalS / interne.length;
 }
 
 assert.equal(averageSalaryNonFreeLancer(employees), 3134)
@@ -69,15 +61,15 @@ assert.equal(averageSalaryNonFreeLancer(employees), 3134)
 
 //* Wie heeft de langste naam?
 function longestName(employees) {
-    const namen = employees.name;
-    var grootste = 0;
-    var langste;
-    for (var i = 0; i < namen.length; i++){
-        if(namen[i].length > grootste){
-        grootste = namen[i].length;
-        langste = namen[i];}
+    let returnName = ""
+    for(i = 0; i< 7;i++)
+    {
+        if(returnName.length < employees[i].name.length)
+        {
+            returnName = employees[i].name
+        }
     }
-    return langste;
+    return returnName
 }
 
 assert.equal(longestName(employees), 'Alexander')
@@ -85,8 +77,15 @@ assert.equal(longestName(employees), 'Alexander')
 
 //* Print de namen van alle werknemers, gesorteerd op voornaam.
 function sortedNames(employees) {
+    let names = []
+    for(i = 0; i<7;i++)
+    {
+        names.push(employees[i].name)
+    }
+    names.sort()
+    return names    
 }
-const namen = employees.name;
+
 
 
 assert.deepEqual(sortedNames(employees), ['Alexander', 'Anne', 'Els', 'Igor', 'Marcel', 'Sandra', 'Thomas'])
