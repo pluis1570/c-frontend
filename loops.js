@@ -48,13 +48,10 @@ gemiddelde = som / numbers.length;
 console.log(gemiddelde)*/
 
 // check of een string een palindroom is
-let mystring = "madam";
-
-let checkPalindrome = mystring.split('').reverse().join('');
-
-if(mystring === checkPalindrome){
-    console.log("is palindrome");
-}
-else{
-    console.log("is not a palindrome");
-}
+function pal(word){
+    const check = (acc,cur, idx, src)=>
+     acc && cur == src[src.length- idx -1]
+     return word.split("").reduce(check,true)
+    }
+console.log(pal("radar"));
+console.log(pal("derp"));

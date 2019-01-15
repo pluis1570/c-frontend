@@ -13,6 +13,9 @@ const assert = require('assert')
 
 //* Hoeveel bedraagt de totale loonkost iedere maand?
 function totalSalaries(employees) {
+    return employees
+    .filter(e => e.salary)
+
 let totalsum = 0;
     for( var i = 0; i<employees.length; i = i++){
         totalsum += employees.salary;
@@ -23,18 +26,15 @@ assert.equal(totalSalaries(employees), 20652)
 
 //* Welke freelancer verdient het meest?
 function bestPaidFreelancer(employees) {
-    let largestSalary = 0;
-    let returnName="";
-for(i = 0; i <employees.length; i++ ){
-    if(employees[i].freelancer == true && employees[i].salary>= largestSalary)
-    {
-        largestSalary=employees[i].salary;
-        returnName = employees[i].name;
+return employees
+.filter(e => e.freelancer)
+.reduce((acc, cur) =>{if(acc == undefined){
+    return cur
     }
-    }
-    return returnName;
+    return acc.salary > cur.salary ? acc : cur
+},undefined)
+.name
 }
-
 
 assert.equal(bestPaidFreelancer(employees), 'Els')
 
@@ -50,6 +50,7 @@ assert.deepEqual(earsMoreThan3k(employees), ['Sandra', 'Alexander', 'Els'])
 
 
 //* Hoeveel verdient een interne medewerker gemiddeld?
+
 function averageSalaryNonFreeLancer(employees) {
     const interne = employees.filter(e => !e.freelancer);
     const totalS = interne.reduce((x,y) => x + y, 0);
@@ -66,7 +67,7 @@ function longestName(employees) {
     {
         if(returnName.length < employees[i].name.length)
         {
-            returnName = employees[i].name
+            returnName = employees[i].name;
         }
     }
     return returnName
@@ -85,9 +86,5 @@ function sortedNames(employees) {
     names.sort()
     return names    
 }
-
-
-
-assert.deepEqual(sortedNames(employees), ['Alexander', 'Anne', 'Els', 'Igor', 'Marcel', 'Sandra', 'Thomas'])
-
-//*/
+/*
+assert.deepEqual(sortedNames(employees), ['Alexander', 'Anne', 'Els', 'Igor', 'Marcel', 'Sandra', 'Thomas'])*/
